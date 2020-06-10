@@ -24,4 +24,4 @@ while sensor.refresh():
     with open(file, "a") as csv:
         t_outside = read_celsius()
         csv.write(datetime.now().strftime(f"{time_str},{t_outside:g},{sensor.temperature:g},{sensor.pressure:g},{sensor.humidity:g}\n"))
-    sleep(1)
+    sleep(60)
