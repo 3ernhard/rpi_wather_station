@@ -9,7 +9,7 @@ csv = argv[1]
 
 head = []
 unit = []
-data = [[], [], [], []]
+data = [[], [], [], [], []]
 
 
 def head_line(line, rm_chrs=["#", " ", "\n"], sep=","):
@@ -34,9 +34,8 @@ def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
         line = line.replace(rm_chr, "")
     sep_line = line.split(sep)
     data[0].append(datetime.datetime.strptime(sep_line[0], unit[0]))
-    data[1].append(float(sep_line[1]))
-    data[2].append(float(sep_line[2]))
-    data[3].append(float(sep_line[3]))
+    for i in range(1, 5):
+        data[i].append(float(sep_line[i]))
 
 
 with open(csv, "r") as f:
@@ -48,21 +47,28 @@ with open(csv, "r") as f:
 
 # data[i], i =
 # 0 : time
-# 1 : temperature
-# 2 : pressure
-# 3 : humidity
+# 1 : temperature(outside)
+# 2 : temperature(inside)
+# 3 : pressure(inside)
+# 4 : humidity(inside)
 
 fig, ax1 = plt.subplots(sharex=True)
 ax1.set_xlabel("time")
 ax1.tick_params(axis="x", rotation=45)
 
-ax1.set_ylabel(unit[1])
-ax1.plot(data[0], data[1], color="tab:red", label="temperature")
-ax1.legend(loc="upper left", bbox_to_anchor=(0, 1.1), frameon=False)
+# left = 1
+# right = 2
+# ax1.set_ylabel(unit[left])
+# ax1.plot(data[0], data[left], color="tab:red", label=head[left])
+# ax1.legend(loc="upper left", bbox_to_anchor=(0, 1.1), frameon=False)
+# ax2 = ax1.twinx()
+# ax2.set_ylabel(unit[right])
+# ax2.plot(data[0], data[right], color="tab:blue", label=head[right])
+# ax2.legend(loc="upper right", bbox_to_anchor=(1, 1.1), frameon=False)
 
-ax2 = ax1.twinx()
-ax2.set_ylabel(unit[3])
-ax2.plot(data[0], data[3], color="tab:blue", label="humidity")
-ax2.legend(loc="upper right", bbox_to_anchor=(1, 1.1), frameon=False)
+ax1.set_ylabel('°C')
+ax1.plot(data[0], data[2], color='tab:red', label='inside')
+ax1.plot(data[0], data[1], color='tab:blue', linestyle='dashed', label='outside')
+ax1.legend(frameon=False)
 
 plt.show()
