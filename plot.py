@@ -67,8 +67,8 @@ ax1.tick_params(axis="x", rotation=45)
 # ax2.legend(loc="upper right", bbox_to_anchor=(1, 1.1), frameon=False)
 
 ax1.set_ylabel('°C')
-ax1.plot(data[0], data[2], color='tab:red', label='inside')
-ax1.plot(data[0], data[1], color='tab:blue', linestyle='dashed', label='outside')
+ax1.plot(data[0], data[2], color='tab:blue', linestyle='dashed', label='inside')
+ax1.plot(data[0], data[1], color='tab:red', label='outside')
 ax1.legend(frameon=False)
 
 plt.show()
