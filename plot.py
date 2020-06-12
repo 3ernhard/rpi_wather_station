@@ -2,10 +2,12 @@
 
 import datetime
 from sys import argv
+from glob import glob
+import os
 
 from matplotlib import pyplot as plt
 
-csv = argv[1]
+csv = argv[1] if len(argv) > 1 else sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))[-1]
 
 head = []
 unit = []
