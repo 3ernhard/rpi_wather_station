@@ -8,7 +8,7 @@ import os
 from matplotlib import pyplot as plt
 
 
-csv = argv[1] if len(argv) > 1 else sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))[-1]
+csvs = argv[1:] if len(argv) > 1 else sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))
 
 head = []
 unit = []
@@ -17,6 +17,8 @@ data = [[], [], [], [], []]
 
 def head_line(line, rm_chrs=["#", " ", "\n"], sep=","):
     global head
+    if head != []:
+        return
     for rm_chr in rm_chrs:
         line = line.replace(rm_chr, "")
     head = line.split(sep)
@@ -24,6 +26,8 @@ def head_line(line, rm_chrs=["#", " ", "\n"], sep=","):
 
 def unit_line(line, rm_chrs=["#", " ", "\n"], sep=","):
     global unit
+    if unit != []:
+        return
     for rm_chr in rm_chrs:
         line = line.replace(rm_chr, "")
     unit = line.split(sep)
@@ -41,11 +45,13 @@ def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
         data[i].append(float(sep_line[i]))
 
 
-with open(csv, "r") as f:
-    head_line(f.readline())
-    unit_line(f.readline())
-    for line in f.readlines():
-        data_line(line)
+for csv in csvs:
+    print(csv)
+    with open(csv, "r") as f:
+        head_line(f.readline())
+        unit_line(f.readline())
+        for line in f.readlines():
+            data_line(line)
 
 
 # data[i], i =
