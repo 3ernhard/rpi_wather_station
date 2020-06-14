@@ -7,6 +7,7 @@ import os
 
 from matplotlib import pyplot as plt
 
+
 csv = argv[1] if len(argv) > 1 else sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))[-1]
 
 head = []
@@ -57,9 +58,17 @@ with open(csv, "r") as f:
 fig, ax1 = plt.subplots(sharex=True)
 ax1.set_xlabel("time")
 ax1.tick_params(axis="x", rotation=45)
+ax1.set_ylabel('°C')
+ax1.plot(data[0], data[2], color='tab:blue', label='inside')
+ax1.plot(data[0], data[1], color='tab:red', label='outside')
+ax1.legend(frameon=False)
+plt.show()
 
-# left = 1
-# right = 2
+# fig, ax1 = plt.subplots(sharex=True)
+# ax1.set_xlabel("time")
+# ax1.tick_params(axis="x", rotation=45)
+# left = 2
+# right = 4
 # ax1.set_ylabel(unit[left])
 # ax1.plot(data[0], data[left], color="tab:red", label=head[left])
 # ax1.legend(loc="upper left", bbox_to_anchor=(0, 1.1), frameon=False)
@@ -67,10 +76,4 @@ ax1.tick_params(axis="x", rotation=45)
 # ax2.set_ylabel(unit[right])
 # ax2.plot(data[0], data[right], color="tab:blue", label=head[right])
 # ax2.legend(loc="upper right", bbox_to_anchor=(1, 1.1), frameon=False)
-
-ax1.set_ylabel('°C')
-ax1.plot(data[0], data[2], color='tab:blue', label='inside')
-ax1.plot(data[0], data[1], color='tab:red', label='outside')
-ax1.legend(frameon=False)
-
-plt.show()
+# plt.show()
