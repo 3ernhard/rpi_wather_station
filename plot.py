@@ -46,7 +46,6 @@ def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
 
 
 for csv in csvs:
-    print(csv)
     with open(csv, "r") as f:
         head_line(f.readline())
         unit_line(f.readline())
