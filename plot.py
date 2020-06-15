@@ -34,7 +34,7 @@ def unit_line(line, rm_chrs=["#", " ", "\n"], sep=","):
 
 
 def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
-    global unit, data
+    global data
     if len(line) == 0 or line[0] == comment:
         return
     for rm_chr in rm_chrs:
@@ -45,12 +45,17 @@ def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
         data[i].append(float(sep_line[i]))
 
 
+
 for csv in csvs:
     with open(csv, "r") as f:
         head_line(f.readline())
         unit_line(f.readline())
         for line in f.readlines():
-            data_line(line)
+            try:
+                data_line(line)
+            except ValueError:
+                print(f"Invalid data line in '{csv}' detected.")
+                continue
 
 
 # data[i], i =
