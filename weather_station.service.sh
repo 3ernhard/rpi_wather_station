@@ -1,6 +1,6 @@
 #!/bin/bash
 
-service_file='/lib/systemd/system/weather_station.service'
+service_file='/etc/systemd/system/weather_station.service'
 
 if [ ! -f "$service_file" ]; then
 	echo "[Unit]
