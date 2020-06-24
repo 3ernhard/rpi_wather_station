@@ -5,6 +5,7 @@ from sys import argv
 from glob import glob
 import os
 
+import numpy as np
 from matplotlib import pyplot as plt
 
 
@@ -45,7 +46,6 @@ def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
         data[i].append(float(sep_line[i]))
 
 
-
 for csv in csvs:
     with open(csv, "r") as f:
         head_line(f.readline())
@@ -69,8 +69,8 @@ fig, ax1 = plt.subplots(sharex=True)
 ax1.set_xlabel("time")
 ax1.tick_params(axis="x", rotation=45)
 ax1.set_ylabel('°C')
-ax1.plot(data[0], data[2], color='tab:blue', label='inside')
-ax1.plot(data[0], data[1], color='tab:red', label='outside')
+ax1.plot(data[0], data[2], color='tab:blue', label=f'inside ({data[2][-1]:.1f}°C)')
+ax1.plot(data[0], data[1], color='tab:red', label=f'outside ({data[1][-1]:.1f}°C)')
 ax1.legend(frameon=False)
 plt.show()
 
