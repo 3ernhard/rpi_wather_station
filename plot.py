@@ -65,12 +65,18 @@ for csv in csvs:
 # 3 : pressure(inside)
 # 4 : humidity(inside)
 
+t_in_str = f'inside: {data[2][-1]:.1f}°C'
+t_out_str = f'outside: {data[1][-1]:.1f}°C'
+
+print(t_in_str)
+print(t_out_str)
+
 fig, ax1 = plt.subplots(sharex=True)
 ax1.set_xlabel("time")
 ax1.tick_params(axis="x", rotation=45)
 ax1.set_ylabel('°C')
-ax1.plot(data[0], data[2], color='tab:blue', label=f'inside ({data[2][-1]:.1f}°C)')
-ax1.plot(data[0], data[1], color='tab:red', label=f'outside ({data[1][-1]:.1f}°C)')
+ax1.plot(data[0], data[2], color='tab:blue', label=t_in_str)
+ax1.plot(data[0], data[1], color='tab:red', label=t_out_str)
 ax1.legend(frameon=False)
 plt.show()
 

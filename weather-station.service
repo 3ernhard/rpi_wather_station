@@ -1,0 +1,10 @@
+[Unit]
+Description=Weather Station
+After=multi-user.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python3 /home/pi/weather_station/weather_station.py
+
+[Install]
+WantedBy=multi-user.target
