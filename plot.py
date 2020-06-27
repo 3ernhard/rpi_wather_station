@@ -65,8 +65,11 @@ for csv in csvs:
 # 3 : pressure(inside)
 # 4 : humidity(inside)
 
-t_in_str = f'inside: {data[2][-1]:.1f}°C'
-t_out_str = f'outside: {data[1][-1]:.1f}°C'
+t_in_mean = np.mean(data[2])
+t_out_mean = np.mean(data[1])
+
+t_in_str =  f'inside:  {data[2][-1]:.1f} <{t_in_mean:.1f}> °C'
+t_out_str = f'outside: {data[1][-1]:.1f} <{t_out_mean:.1f}> °C' 
 
 print(t_in_str)
 print(t_out_str)
@@ -77,6 +80,8 @@ ax1.tick_params(axis="x", rotation=45)
 ax1.set_ylabel('°C')
 ax1.plot(data[0], data[2], color='tab:blue', label=t_in_str)
 ax1.plot(data[0], data[1], color='tab:red', label=t_out_str)
+ax1.axhline(t_in_mean, color='tab:blue', zorder=0)
+ax1.axhline(t_out_mean, color='tab:red', zorder=0)
 ax1.legend(frameon=False)
 plt.show()
 
