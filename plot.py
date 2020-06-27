@@ -71,9 +71,6 @@ t_out_mean = np.mean(data[1])
 t_in_str =  f'inside:  {data[2][-1]:.1f} <{t_in_mean:.1f}> °C'
 t_out_str = f'outside: {data[1][-1]:.1f} <{t_out_mean:.1f}> °C' 
 
-print(t_in_str)
-print(t_out_str)
-
 fig, ax1 = plt.subplots(sharex=True)
 ax1.set_xlabel("time")
 ax1.tick_params(axis="x", rotation=45)
