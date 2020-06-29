@@ -9,8 +9,10 @@ from BME280 import BME280
 from serial_read import read_celsius
 
 
-BIN_SIZE = 60
+BIN_SIZE = 300
+STEP_SIZE = 10
 # in seconds (int)
+METHOD = np.median
 
 
 sensor = BME280()
@@ -27,9 +29,7 @@ with open(F, "w") as csv:
 
 
 i = 0
-# build average over BIN_SIZE, record every second
-# t_outside = t_inside = pressure = humidity = 0
-# build median over BIN_SIZE, record every second
+# build METHOD over BIN_SIZE, record every STEP_SIZE seconds
 t_outside = []
 t_inside = []
 pressure = []
@@ -37,37 +37,28 @@ humidity = []
 
 while sensor.refresh():
 
-    # t_outside += read_celsius()
-    # t_inside += sensor.temperature
-    # pressure += sensor.pressure
-    # humidity += sensor.humidity
     t_outside.append(read_celsius())
     t_inside.append(sensor.temperature)
     pressure.append(sensor.pressure)
     humidity.append(sensor.humidity)
 
-    if i == BIN_SIZE:
+    if i >= BIN_SIZE:
 
-        # t_outside /= BIN_SIZE
-        # t_inside /= BIN_SIZE
-        # pressure /= BIN_SIZE
-        # humidity /= BIN_SIZE
-        t_outside = np.median(t_outside)
-        t_inside = np.median(t_inside)
-        pressure = np.median(pressure)
-        humidity = np.median(humidity)
+        t_outside = METHOD(t_outside)
+        t_inside = METHOD(t_inside)
+        pressure = METHOD(pressure)
+        humidity = METHOD(humidity)
 
         with open(F, "a") as csv:
             csv.write(datetime.now().strftime(f"{time_str},{t_outside:g},{t_inside:g},{pressure:g},{humidity:g}\n"))
 
         i = 0
-        # t_outside = t_inside = pressure = humidity = 0
         t_outside = []
         t_inside = []
         pressure = []
         humidity = []
 
     else:
-        i += 1
+        i += STEP_SIZE
 
-    sleep(1)
+    sleep(STEP_SIZE)

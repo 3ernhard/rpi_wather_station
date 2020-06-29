@@ -8,7 +8,7 @@ import os
 import numpy as np
 from matplotlib import pyplot as plt
 
-
+# Plot all csv files in ./data/ if no argument is passed, else plot the passed csv file.
 csvs = argv[1:] if len(argv) > 1 else sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))
 
 head = []
@@ -65,34 +65,15 @@ for csv in csvs:
 # 3 : pressure(inside)
 # 4 : humidity(inside)
 
-t_in_mean = np.mean(data[2])
-t_out_mean = np.mean(data[1])
+mean_in_temp = np.mean(data[2])
+mean_out_temp = np.mean(data[1])
 
-t_in_str =  f'inside:  {data[2][-1]:.1f} <{t_in_mean:.1f}> °C'
-t_out_str = f'outside: {data[1][-1]:.1f} <{t_out_mean:.1f}> °C' 
-
-# fig, ax1 = plt.subplots(sharex=True)
 plt.xlabel("time")
 plt.ylabel('°C')
 plt.xlim((data[0][0], data[0][-1]))
 plt.tick_params(axis="x", rotation=45)
-plt.plot(data[0], data[2], color='tab:blue', label=t_in_str)
-plt.plot(data[0], data[1], color='tab:red', label=t_out_str)
-plt.axhline(t_in_mean, color='tab:blue', zorder=0)
-plt.axhline(t_out_mean, color='tab:red', zorder=0)
+plt.plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
+plt.plot(data[0], data[1], color='tab:red', label=f'outside: {data[1][-1]:.1f} <{mean_out_temp:.1f}> °C')
+plt.axhline(mean_out_temp, color='black', zorder=0)
 plt.legend(frameon=False)
 plt.show()
-
-# fig, ax1 = plt.subplots(sharex=True)
-# ax1.set_xlabel("time")
-# ax1.tick_params(axis="x", rotation=45)
-# left = 2
-# right = 4
-# ax1.set_ylabel(unit[left])
-# ax1.plot(data[0], data[left], color="tab:red", label=head[left])
-# ax1.legend(loc="upper left", bbox_to_anchor=(0, 1.1), frameon=False)
-# ax2 = ax1.twinx()
-# ax2.set_ylabel(unit[right])
-# ax2.plot(data[0], data[right], color="tab:blue", label=head[right])
-# ax2.legend(loc="upper right", bbox_to_anchor=(1, 1.1), frameon=False)
-# plt.show()
