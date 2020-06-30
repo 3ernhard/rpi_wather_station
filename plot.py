@@ -67,13 +67,24 @@ for csv in csvs:
 
 mean_in_temp = np.mean(data[2])
 mean_out_temp = np.mean(data[1])
+mean_in_hum = np.mean(data[4])
 
-plt.xlabel("time")
-plt.ylabel('°C')
-plt.xlim((data[0][0], data[0][-1]))
-plt.tick_params(axis="x", rotation=45)
-plt.plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
-plt.plot(data[0], data[1], color='tab:red', label=f'outside: {data[1][-1]:.1f} <{mean_out_temp:.1f}> °C')
-plt.axhline(mean_out_temp, color='black', zorder=0)
-plt.legend(frameon=False)
+fig, ax = plt.subplots(2)
+
+ax[0].set(ylabel='°C')
+ax[0].set(xlim=(data[0][0], data[0][-1]))
+ax[0].plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
+ax[0].plot(data[0], data[1], color='tab:red', label=f'outside: {data[1][-1]:.1f} <{mean_out_temp:.1f}> °C')
+ax[0].axhline(mean_out_temp, color='black', zorder=0)
+ax[0].tick_params(axis="x", rotation=45)
+ax[0].legend(frameon=False)
+
+ax[1].set(ylabel='%')
+ax[1].set(xlim=(data[0][0], data[0][-1]))
+ax[1].set(ylim=(0, 100))
+ax[1].plot(data[0], data[4], color='tab:blue', label=f'inside: {data[4][-1]:.1f} <{mean_in_hum:.1f}> %')
+ax[1].axhline(mean_in_hum, color='black', zorder=0)
+ax[1].tick_params(axis="x", rotation=45)
+ax[1].legend(frameon=False)
+
 plt.show()
