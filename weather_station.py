@@ -69,16 +69,8 @@ if __name__ == '__main__':
 
     while sensor.refresh():
 
-        t_out = read_celsius()
-        t_in = sensor.temperature
-
-        if t_in < t_out:
-            go_red()
-        else:
-            go_dark()
-
-        t_outside.append(t_out)
-        t_inside.append(t_in)
+        t_outside.append(read_celsius())
+        t_inside.append(sensor.temperature)
         pressure.append(sensor.pressure)
         humidity.append(sensor.humidity)
 
@@ -91,6 +83,11 @@ if __name__ == '__main__':
 
             with open(F, "a") as csv:
                 csv.write(datetime.now().strftime(f"{time_str},{t_outside:g},{t_inside:g},{pressure:g},{humidity:g}\n"))
+
+            if t_inside < t_outside:
+                go_red()
+            else:
+                go_dark()
 
             i = 0
             t_outside = []
