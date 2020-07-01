@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#                                                                      $(get most recent file from directory            )
+#                               $(get last line from the previous file                                                   )
+#                          <<< pass from standard input
+# split line with the IFS delimiter and save the array to LAST_LINE
+IFS=',' read -ra LAST_LINE <<< "$(tail -n 1 $HOME/weather_station/data/$(ls -Art $HOME/weather_station/data/ | tail -n 1))"
+
+echo "${LAST_LINE[0]}"
+echo "in:  ${LAST_LINE[2]} °C"
+echo "out: ${LAST_LINE[1]} °C"
+echo "cpu: $(python3 $HOME/bin/cpu-temp)"
