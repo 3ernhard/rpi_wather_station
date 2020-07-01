@@ -72,8 +72,8 @@ if __name__ == '__main__':
         t_out = read_celsius()
         t_in = sensor.temperature
 
-        if t_in > t_out:
-            go_green()
+        if t_in < t_out:
+            go_red()
         else:
             go_dark()
 
