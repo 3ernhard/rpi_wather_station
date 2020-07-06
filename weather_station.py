@@ -39,6 +39,7 @@ def go_green(force=False):
     """ Turn on RPI's green LED"""
     global LED
     if force or LED != "GREEN":
+        go_dark(force=True)
         call(file_path+"/go-green")
         LED = "GREEN"
 
@@ -47,6 +48,7 @@ def go_red(force=False):
     """ Turn on RPI's red LED"""
     global LED
     if force or LED != "RED" :
+        go_dark(force=True)
         call(file_path+"/go-red")
         LED = "RED"
 
@@ -84,8 +86,10 @@ if __name__ == '__main__':
             with open(F, "a") as csv:
                 csv.write(datetime.now().strftime(f"{time_str},{t_outside:g},{t_inside:g},{pressure:g},{humidity:g}\n"))
 
-            if t_inside < t_outside:
+            if t_inside + 1.5 <= t_outside:
                 go_red()
+            if t_inside <= t_outside:
+                go_green()
             else:
                 go_dark()
 
