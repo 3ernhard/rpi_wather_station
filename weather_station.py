@@ -86,10 +86,8 @@ if __name__ == '__main__':
             with open(F, "a") as csv:
                 csv.write(datetime.now().strftime(f"{time_str},{t_outside:g},{t_inside:g},{pressure:g},{humidity:g}\n"))
 
-            if t_inside + 1.5 <= t_outside:
-                go_red()
             if t_inside <= t_outside:
-                go_green()
+                go_red()
             else:
                 go_dark()
 
