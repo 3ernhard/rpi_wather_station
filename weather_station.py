@@ -90,7 +90,7 @@ if __name__ == '__main__':
             if abs(t_inside - t_outside) <= 1:
                 go_green()
             # Wenn nicht und die Aussentemperatur größer als die Innentemperatur ist: rot
-            elif t_inside <= t_outside;
+            elif t_inside <= t_outside:
                 go_red()
             # Sonst aus (Aussentemperatur kleiner als Innentemperatur)
             else:
