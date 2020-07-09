@@ -86,13 +86,12 @@ if __name__ == '__main__':
             with open(F, "a") as csv:
                 csv.write(datetime.now().strftime(f"{time_str},{t_outside:g},{t_inside:g},{pressure:g},{humidity:g}\n"))
 
-            # Wenn die Aussentemperatur in einem +- n°C Bereich liegt: grün
-            if abs(t_inside - t_outside) <= 1:
-                go_green()
-            # Wenn nicht und die Aussentemperatur größer als die Innentemperatur ist: rot
-            elif t_inside <= t_outside:
+            # t_delta ist positiv wenn es draußen wärmer ist als drinnen
+            t_delta =  t_outside - t_inside
+            if t_delta > 3:
                 go_red()
-            # Sonst aus (Aussentemperatur kleiner als Innentemperatur)
+            elif t_delta > 0:
+                go_green()
             else:
                 go_dark()
 
