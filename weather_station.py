@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
             # t_delta ist positiv wenn es draußen wärmer ist als drinnen
             t_delta =  t_outside - t_inside
-            if t_delta > 3:
+            if t_delta > 1.5:
                 go_red()
             elif t_delta > 0:
                 go_green()
