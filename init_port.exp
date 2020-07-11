@@ -4,16 +4,22 @@ set timeout -1
 
 spawn screen /dev/ttyACM0 9600
 
-sleep 2
+sleep 5
 
 send -- "\r"
 expect "."
 
-send -- "\r"
-expect "."
+sleep 1
 
 send -- "\r"
 expect "."
+
+sleep 1
+
+send -- "\r"
+expect "."
+
+sleep 1
 
 send -- ":quit\r"
 
