@@ -7,10 +7,10 @@
 IFS=',' read -ra LAST_LINE <<< "$(tail -n 1 $HOME/weather_station/data/$(ls -Art $HOME/weather_station/data/ | tail -n 1))"
 
 echo "${LAST_LINE[0]}"
-echo "TEMP::"
-echo "act: $(python3 $HOME/weather_station/serial_read.py)"
+echo "temperature::"
 echo "in:  ${LAST_LINE[2]} °C"
 echo "out: ${LAST_LINE[1]} °C"
+echo "act: $(python3 $HOME/weather_station/serial_read.py)"
 echo "cpu: $(python3 $HOME/bin/cpu-temp)"
-echo "HUMIDITY::"
+echo "humidity::"
 echo "in:  ${LAST_LINE[4]} %"
