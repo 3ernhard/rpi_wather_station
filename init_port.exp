@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+
+set timeout -1
+
+spawn screen /dev/ttyACM0 9600
+
+sleep 1
+
+send -- "\r"
+expect "."
+
+send -- ":quit\r"
+
+expect eof
