@@ -8,7 +8,7 @@ IFS=',' read -ra LAST_LINE <<< "$(tail -n 1 $HOME/weather_station/data/$(ls -Art
 
 echo "${LAST_LINE[0]}"
 echo "TEMP::"
-echo "act: $(python3 serial_read.py)"
+echo "act: $(python3 $HOME/weather_station/serial_read.py)"
 echo "in:  ${LAST_LINE[2]} °C"
 echo "out: ${LAST_LINE[1]} °C"
 echo "cpu: $(python3 $HOME/bin/cpu-temp)"
