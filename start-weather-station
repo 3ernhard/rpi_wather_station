@@ -1,4 +1,4 @@
 #!/bin/sh
 
 /home/pi/weather_station/init_port.exp
-/home/pi/weather_station/weather-station.py &
+/home/pi/weather_station/weather_station.py &
