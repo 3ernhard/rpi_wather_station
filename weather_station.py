@@ -10,12 +10,10 @@ from BME280 import BME280
 from serial_read import read_celsius
 
 
-BIN_SIZE = 300
-STEP_SIZE = 10
+BIN_SIZE = 60*5
+STEP_SIZE = 3
 # in seconds (int)
 METHOD = np.median
-
-LED = "OFF"
 
 
 sensor = BME280()
@@ -25,6 +23,9 @@ F = file_path
 F += "/data/"
 F += datetime.now().strftime(time_str.replace(":", "-"))
 F += ".csv"
+
+
+LED = "OFF"
 
 
 def go_dark(force=False):
