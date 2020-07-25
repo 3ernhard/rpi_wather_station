@@ -68,8 +68,9 @@ for csv in csvs:
 mean_in_temp = np.mean(data[2])
 mean_out_temp = np.mean(data[1])
 
-if True:
+if 1:
 
+    plt.title(data[0][-1].strftime("%d. %b, %H:%M"))
     plt.ylabel('°C')
     plt.xlim((data[0][0], data[0][-1]))
     plt.plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
@@ -79,12 +80,13 @@ if True:
     plt.legend(frameon=False)
 
 
-if False:
+else:
 
     mean_in_hum = np.mean(data[4])
 
     fig, (ax1, ax2) = plt.subplots(2)
 
+    ax1.set(title=data[0][-1].strftime("%d. %b, %H:%M"))
     ax1.set(ylabel='°C')
     ax1.set(xlim=(data[0][0], data[0][-1]))
     ax1.plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
