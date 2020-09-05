@@ -9,7 +9,7 @@ csvs = sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))
 
 head = []
 unit = []
-data = [[], [], [], []]
+data = [[], [], [], [], []]
 
 
 def head_line(line, rm_chrs=["#", " ", "\n"], sep=","):
@@ -60,4 +60,4 @@ for csv in csvs:
 print_result(1, data[0][-1].strftime("%H:%M"))
 print_result(2, data[1][-1])
 print_result(3, data[2][-1])
-print_result(4, data[3][-1])
+print_result(4, data[4][-1])
