@@ -9,7 +9,7 @@ csvs = sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))
 
 head = []
 unit = []
-data = [[], [], [], [], []]
+data = [[], [], [], []]
 
 
 def head_line(line, rm_chrs=["#", " ", "\n"], sep=","):
@@ -38,7 +38,7 @@ def data_line(line, rm_chrs=[" ", "\n"], sep=",", comment="#"):
         line = line.replace(rm_chr, "")
     sep_line = line.split(sep)
     data[0].append(datetime.datetime.strptime(sep_line[0], unit[0]))
-    for i in range(1, 5):
+    for i in range(1, len(data)):
         data[i].append(float(sep_line[i]))
 
 
@@ -60,5 +60,4 @@ for csv in csvs:
 print_result(1, data[0][-1].strftime("%H:%M"))
 print_result(2, data[1][-1])
 print_result(3, data[2][-1])
-print_result(4, data[3][-1]/1000)
-print_result(5, data[4][-1])
+print_result(4, data[3][-1])
