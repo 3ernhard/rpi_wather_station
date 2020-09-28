@@ -68,7 +68,8 @@ for csv in csvs:
 mean_in_temp = np.mean(data[2])
 mean_out_temp = np.mean(data[1])
 
-if 1:
+# 1 = no humidity, 0 = humidity
+if 0:
 
     plt.title(data[0][-1].strftime("%d. %b, %H:%M"))
     plt.ylabel('°C')
