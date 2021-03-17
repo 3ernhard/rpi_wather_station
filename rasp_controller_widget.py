@@ -5,7 +5,8 @@ from glob import glob
 import os
 
 # use all csv files in ./data/
-csvs = sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/*.csv'))
+csvs = sorted(glob(os.path.dirname(os.path.realpath(__file__))
+              +'/data/????-??-??T??-??-??.csv'))
 
 head = []
 unit = []
