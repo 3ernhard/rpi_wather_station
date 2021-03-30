@@ -101,7 +101,6 @@ else:
     
     ax2.set(ylabel='%')
     ax2.set(xlim=(data[0][0], data[0][-1]))
-    ax2.set(ylim=(0, 100))
     ax2.plot(data[0], data[4], color='tab:blue', label=f'inside: {data[4][-1]:.1f} <{mean_in_hum:.1f}> %')
     ax2.axhline(mean_in_hum, color='black', zorder=0)
     ax2.tick_params(axis="x", rotation=45)
