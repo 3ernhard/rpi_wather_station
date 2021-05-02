@@ -68,6 +68,20 @@ for csv in csvs:
 # 3 : pressure(inside)
 # 4 : humidity(inside)
 
+t_delta = datetime.datetime.now()-data[0][-1]
+t_d = t_delta.days
+t_h, rem = divmod(t_delta.seconds, 3600)
+t_m, t_s = divmod(rem, 60)
+print('Last measurement was ', end='')
+if t_d != 0:
+    print(f'{t_d:d} days ', end='')
+if t_h != 0:
+    print(f'{t_h:d} hours ', end='')
+if t_m != 0:
+    print(f'{t_m:d} minutes ', end='')
+print(f'{t_s:d} seconds ', end='')
+print('ago.')
+
 mean_in_temp = np.mean(data[2])
 mean_out_temp = np.mean(data[1])
 
