@@ -91,7 +91,7 @@ if __name__ == '__main__':
             t_delta =  t_outside - t_inside
             if t_delta > 1.5:
                 go_red()
-            elif t_delta > 0:
+            elif 1.5 >= abs(t_delta) >= 0:
                 go_green()
             else:
                 go_dark()
