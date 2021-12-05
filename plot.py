@@ -93,9 +93,10 @@ if 0:
     plt.xlim((data[0][0], data[0][-1]))
     plt.plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
     plt.plot(data[0], data[1], color='tab:red', label=f'outside: {data[1][-1]:.1f} <{mean_out_temp:.1f}> °C')
-    plt.axhline(mean_out_temp, color='black', zorder=0)
+    ax1.axhline(18, color='black', linewidth=0.5)
+    ax1.axhline(24, color='black', linewidth=0.5)
     plt.tick_params(axis="x", rotation=45)
-    plt.legend(frameon=False)
+    plt.legend()
 
 
 else:
@@ -109,16 +110,18 @@ else:
     ax1.set(xlim=(data[0][0], data[0][-1]))
     ax1.plot(data[0], data[2], color='tab:blue', label=f'inside:  {data[2][-1]:.1f} <{mean_in_temp:.1f}> °C')
     ax1.plot(data[0], data[1], color='tab:red', label=f'outside: {data[1][-1]:.1f} <{mean_out_temp:.1f}> °C')
-    ax1.axhline(mean_out_temp, color='black', zorder=0)
+    ax1.axhline(18, color='black', linewidth=0.5)
+    ax1.axhline(24, color='black', linewidth=0.5)
     ax1.tick_params(axis="x", rotation=45)
-    ax1.legend(frameon=False)
+    ax1.legend()
     
     ax2.set(ylabel='%')
     ax2.set(xlim=(data[0][0], data[0][-1]))
     ax2.plot(data[0], data[4], color='tab:blue', label=f'inside: {data[4][-1]:.1f} <{mean_in_hum:.1f}> %')
-    ax2.axhline(mean_in_hum, color='black', zorder=0)
+    ax2.axhline(40, color='black', linewidth=0.5)
+    ax2.axhline(60, color='black', linewidth=0.5)
     ax2.tick_params(axis="x", rotation=45)
-    ax2.legend(frameon=False)
+    ax2.legend()
 
 
 plt.show()
