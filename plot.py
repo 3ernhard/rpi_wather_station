@@ -9,10 +9,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 import matplotlib
-try:
-    matplotlib.use('GTK3Agg')
-except:
-    pass
 
 # Plot all csv files in ./data/ if no argument is passed, else plot the passed csv file.
 csvs = argv[1:] if len(argv) > 1 else sorted(glob(os.path.dirname(os.path.realpath(__file__))+'/data/????-??-??T??-??-??.csv'))
